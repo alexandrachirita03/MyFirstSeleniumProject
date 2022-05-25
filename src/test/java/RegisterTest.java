@@ -6,6 +6,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.apache.commons.lang3.RandomStringUtils;
 
 public class RegisterTest {
 
@@ -20,6 +21,7 @@ public class RegisterTest {
     }
 
  @Test
+
     public void validRegisterTest(){
 
         driver.findElement(By.cssSelector(".skip-account .label")).click();
@@ -27,12 +29,12 @@ public class RegisterTest {
         driver.findElement(By.id("firstname")).sendKeys("Alexandra");
         driver.findElement(By.id("middlename")).sendKeys("G");
         driver.findElement(By.id("lastname")).sendKeys("Chirita");
-        driver.findElement(By.id("email_address")).sendKeys("alexandra.r@yahoo.com");
+        driver.findElement(By.id("email_address")).sendKeys("alexandra.r" + RandomStringUtils.randomAlphanumeric(1) + "@yahoo.com");
         driver.findElement(By.id("password")).sendKeys("pass123");
         driver.findElement(By.id("confirmation")).sendKeys("pass123");
-        driver.findElement(By.cssSelector(".buttons-set .button")).click();
+        driver.findElement(By.cssSelector("#form-validate > div.buttons-set > button")).click();
         //WebElement dashboardTextElement = driver.findElement(By.cssSelector("body > div > div.page > div.main-container.col2-left-layout > div > div.col-main > div.my-account > div.my-wishlist > div > h1"));
-        String textFromElement =  driver.findElement(By.cssSelector("body > div > div.page > div.main-container.col1-layout > div > div > div.std > ul.messages > li > ul > li > span")).getText();
+        String textFromElement =  driver.findElement(By.cssSelector("body > div > div.page > div.main-container.col2-left-layout > div > div.col-main > div.my-account > div > ul > li > ul > li > span")).getText();
         Assert.assertEquals("Thank you for registering with Madison Island.", textFromElement);
 
     }
@@ -48,9 +50,11 @@ public class RegisterTest {
         driver.findElement(By.id("email_address")).sendKeys("alexandra.rusitoru95.com");
         driver.findElement(By.id("password")).sendKeys("pass123");
         driver.findElement(By.id("confirmation")).sendKeys("pass123");
-        driver.findElement(By.cssSelector(".buttons-set .button")).click();
-        String textFromElement = driver.findElement(By.cssSelector("#email_address")).getText();
+        driver.findElement(By.cssSelector("#form-validate > div.buttons-set > button")).click();
+        String textFromElement = driver.findElement(By.cssSelector(("#form-validate > div.fieldset > ul > li:nth-child(2) > div::after"))).getText()  ;
         Assert.assertEquals("Please include an '@' in the email address. 'alexandra.rusitoru95.com' is missing an '@'.", textFromElement);
+
+        // Nu poti gasi textul de eroare ce apare pe text-box cu email, cand e gresit mailul.
     }
 
 

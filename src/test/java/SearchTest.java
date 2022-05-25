@@ -5,6 +5,8 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
+import static java.lang.Thread.sleep;
+
 public class SearchTest {
     private WebDriver driver;
 
@@ -17,10 +19,10 @@ public class SearchTest {
     }
 
     @Test
-    public void verifySearchButtonWithBlankInput(){
+    public void verifySearchButtonWithBlankInput() throws InterruptedException {
         driver.findElement(By.cssSelector(".search-button")).click();
         Assert.assertTrue(driver.findElement(By.cssSelector("#search.required-entry.validation-failed")).isDisplayed());
-        wait(1500);
+        sleep(1500);
         driver.close();
     }
 

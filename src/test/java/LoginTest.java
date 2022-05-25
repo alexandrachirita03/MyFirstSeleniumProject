@@ -13,7 +13,7 @@ public class LoginTest {
 
     @Before
     public void openDriver() {
-        System.setProperty("webdriver.chrome.driver", "resources/chromedriver");
+        System.setProperty("webdriver.chrome.driver", "resources/chromedriver.exe");
         driver = new ChromeDriver();
         driver.manage().window().maximize();
         driver.get("http://testfasttrackit.info/selenium-test/");
@@ -22,18 +22,22 @@ public class LoginTest {
     @Test
     public void loginWithValidCredentialsTest() {
 
-        driver.findElement(By.cssSelector(".skip-account .label")).click();
-       WebElement accountLink = driver.findElement(By.cssSelector("#header > div > div.skip-links > div > a > span.label"));
-       accountLink.click();
-        driver.findElement(By.cssSelector("a[title='Log In']")).click();
-        driver.findElement(By.id("email")).sendKeys("alexandra.rusitoru95@gmail.com");
+        driver.findElement(By.cssSelector(".skip-account .label")).click(); //
+//       WebElement accountLink = driver.findElement(By.cssSelector("#header-account > div > ul > li.last > a"));
+//       accountLink.click();
+       // driver.findElement(By.cssSelector("#header-account > div > ul > li.last > a")).click();
+        //driver.findElement(By.cssSelector("a[title='Log In']")).click();
+        driver.findElement(By.cssSelector("#header-account > div > ul > li.last")).click(); // log in
+
+        driver.findElement(By.id("email")).sendKeys("alexandra.r@yahoo.com");
         driver.findElement(By.id("pass")).sendKeys("pass123");
+
         driver.findElement(By.id("send2")).click();
        WebElement dashboardTextElement = driver.findElement(By.cssSelector(".page-title h1"));
        String textFromElement = driver.findElement(By.cssSelector(".hello strong")).getText();
-        driver.findElement(By.id("send2")).click();
+        //driver.findElement(By.id("send2")).click();
         Assert.assertTrue(dashboardTextElement.isDisplayed());
-        Assert.assertEquals("Hello, C Alexandra!",textFromElement);
+        Assert.assertEquals("Hello, Alexandra G Chirita!", textFromElement);
     }
     @Test
     public void loginWithInvalidPasswordTest() {

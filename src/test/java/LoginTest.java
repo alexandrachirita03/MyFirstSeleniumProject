@@ -67,10 +67,26 @@ public class LoginTest {
         String textFromElement = driver.findElement(By.id("advice-required-entry-email")).getText();
         Assert.assertEquals( "This is a required field.", textFromElement);
     }
+    @Test
+    public void loginWithBlankEmailTest() {
+        driver.findElement(By.cssSelector("#header > div > div.skip-links > div > a > span.label")).click();
+        driver.findElement(By.cssSelector("#header-account > div > ul > li.last > a")).click();
+        driver.findElement(By.id("pass")).sendKeys("121233456");
+        driver.findElement(By.cssSelector("#send2 > span > span")).click();
+       // String textFromElement = driver.findElement(By.id("advice-required-entry-email")).getText();
+        Assert.assertTrue(driver.findElement(By.cssSelector("#.validation-advice")).isDisplayed());
+    }
+
+
+
+
     @After
     public void close() {
         driver.close();
     }
+
+
+
 }
 
 

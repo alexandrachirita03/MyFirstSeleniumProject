@@ -65,7 +65,7 @@ public class RegisterTest {
         driver.findElement(By.id("email_address")).sendKeys(" ");
         driver.findElement(By.id("password")).sendKeys(" ");
         driver.findElement(By.id("confirmation")).sendKeys(" ");
-        driver.findElement(By.cssSelector(".buttons-set .button")).click();
+        driver.findElement(By.cssSelector(".buttons-set .button ")).click();
         String textFromElement =  driver.findElement(By.id("advice-required-entry-firstname")).getText();
         Assert.assertEquals("This is a required field.", textFromElement);
     }
